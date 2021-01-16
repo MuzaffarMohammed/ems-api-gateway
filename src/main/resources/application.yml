@@ -2,6 +2,12 @@
 spring:
   application:
     name: EMS-API-GATEWAY  
+  cloud:
+    gateway:      routes:
+        - id: EMS-SYSTEM
+          uri:  lb://EMS-SYSTEM
+          predicates:          - Path=/institute/**
+      
 server:
   port: 4343    
     
@@ -12,4 +18,4 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:8761/eureka/    
+      defaultZone: http://${eureka.instance.hostname}:4340/eureka/    
